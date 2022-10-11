@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // Stateless functional component
 
 const NavBar = ({totalCounters}) => {
-  console.log("Navbar - rendered");
+  //console.log("Navbar - rendered");
   return (
     <nav className="navbar bg-light">
       <div className="container-fluid">
