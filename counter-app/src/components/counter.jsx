@@ -2,9 +2,17 @@ import React, { Component } from "react";
 
 class Counter extends Component {
 
+  constructor() {
+    super();
+    console.log("Counter constructor");
+  }
 
+  componentDidMount(){
+    console.log("counter Mounted");
+  }
 
   render() {
+    console.log("Counter REndered");
     return (
       <div>
 
