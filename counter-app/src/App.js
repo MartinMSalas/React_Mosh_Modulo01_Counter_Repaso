@@ -17,10 +17,10 @@ class App extends Component {
   */
   state = {
     counters: [
-      { id: 1, value: 4 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 },
+      { id: 1, value: 4 ,liked:true},
+      { id: 2, value: 0 ,liked:false},
+      { id: 3, value: 0 ,liked:false},
+      { id: 4, value: 0 ,liked:false},
     ],
   };
 
@@ -53,10 +53,19 @@ class App extends Component {
     });
     this.setState(counters);
   };
+  handleLike = (counter) => {
+    
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = {...counter};
+    counters[index].liked = !counters[index].liked;
+    this.setState({ counters });
+  }
   render() {
-    console.log("App rendered");
+    
     return (
       <React.Fragment>
+
         <NavBar
           totalCounters={this.state.counters.filter((c) => c.value > 0).length}
         ></NavBar>
@@ -66,8 +75,10 @@ class App extends Component {
             onDelete={this.handleDelete}
             onIncrement={this.handleIncrement}
             onDecrement={this.handleDecrement}
+            onLike={this.handleLike}
             onReset={this.handleReset}
           ></Counters>
+          
         </main>
       </React.Fragment>
     );

@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
+
+const emptyHeart = <FontAwesomeIcon icon={farHeart} />
+const fullHeart = <FontAwesomeIcon icon={faHeart} />
 
 class Counter extends Component {
   /*
@@ -13,79 +19,67 @@ class Counter extends Component {
   }
   */
 
+
   render() {
     //console.log("Counter REndered");
     return (
-      /*
+
       
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-4">
-            <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-          </div>
-          <div className="col-sm-4">
-            <button
-              onClick={() => this.props.onIncrement(this.props.counter)}
-              className="btn btn-secondary btn-sm m-2"
-            >
-              +
-            </button>
-            
-          </div>
-          <div className="col-sm-4">
-            {this.formatDecrementButton()
-            }
-
-          </div>
-          <div className="col-sm-4">
-
-            <button
-              onClick={() => this.props.onDelete(this.props.counter.id)}
-              className="btn btn-danger btn-sm m-2"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-      */
-      <div className="container">
         <div className="row ">
           <div className="col col-2">
-            {" "}
+           
             <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
           </div>
 
-          <div className="col">
+          <div className="col ">
             <button
               onClick={() => this.props.onIncrement(this.props.counter)}
-              className="btn btn-secondary btn-sm m-2 p-3"
+              className="btn btn-secondary btn-sm "
             >
               +
             </button>
           </div>
 
           <div className="col">
-            
-          {this.formatDecrementButton()
-            }
+          <button
+              onClick={() => this.props.onDecrement(this.props.counter)}
+              className="btn btn-secondary btn-sm "
+              disabled={this.props.counter.value === 0? "disabled":""}
+            >
+              -
+            </button>
+         
           </div>
           <div className="col ">
             
             <button
               onClick={() => this.props.onDelete(this.props.counter.id)}
-              className="btn btn-danger btn-sm m-2 p-3"
+              className="btn btn-danger btn-sm  "
             >
               Delete
             </button>
           </div>
+          <div className="col col-4">
+            <div  onClick={() => this.props.onLike(this.props.counter)}  >
+              {this.formateHeart()}
+            </div>
+            
+            
+          </div>
         </div>
-      </div>
+      
     );
   }
+  formateHeart() {
+    if(this.props.counter.liked){
+      return fullHeart;
 
+    }else {
+      return emptyHeart;
+    }
+  }
   getBadgeClasses() {
-    let classes = "badge m-2 p-3 badge-";
+    let classes = "badge m-2  badge-";
     classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
@@ -100,14 +94,14 @@ class Counter extends Component {
       return (
         <button
           onClick={() => this.props.onDecrement(this.props.counter)}
-          className="btn btn-secondary btn-sm m-2 p-3"
+          className="btn btn-secondary btn-sm m-1 "
         >
           -
         </button>
       );
     } else {
       return (
-        <button className="btn btn-secondary btn-sm m-2 p-3 disabled">-</button>
+        <button className="btn btn-secondary btn-sm m-2  disabled">-</button>
       );
     }
   }

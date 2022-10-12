@@ -14,7 +14,7 @@ class Counters extends Component {
    */
   render() {
     //  console.log("Counters Rendered");
-    const {onReset, counters, onDelete, onIncrement, onDecrement} = this.props;
+    const {onReset, counters, onDelete, onIncrement, onDecrement, onLike} = this.props;
     return (
       <div>
         <button
@@ -30,6 +30,7 @@ class Counters extends Component {
             onDelete={onDelete}
             onIncrement={onIncrement}
             onDecrement={onDecrement}
+            onLike={onLike}
             counter={counter}
           ></Counter>
         ))}
